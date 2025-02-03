@@ -49,13 +49,13 @@ Metadata Selection & Processing:
 - Type of land classification should be determined based on metadata content.
 
 #### From the shared meeting notes (image), the following steps are emphasized:
-Choose metadata categories to keep, ensuring that numerical/continuous variables are converted into categorical.
-Develop a diversity analysis model to assess the significance of different variables.
-Identify the most significant category and use it to build a taxonomic model.
-Test the model using machine learning. 
+- Choose metadata categories to keep, ensuring that numerical/continuous variables are converted into categorical.
+- Develop a diversity analysis model to assess the significance of different variables.
+- Identify the most significant category and use it to build a taxonomic model.
+- Test the model using machine learning. 
 
 #### Next Steps Before the Next Team Meeting:
-Outline research objectives for the proposal.
-Prepare the outline of the proposal.
-Prepare & finalize the dataset for analysis, ensuring that it is processed correctly.
-Ensure all necessary files are prepared for R processing before proceeding with analysis.
+- Outline research objectives for the proposal.
+- Prepare the outline of the proposal.
+- Prepare & finalize the dataset for analysis, ensuring that it is processed correctly.
+- Ensure all necessary files are prepared for R processing before proceeding with analysis.
