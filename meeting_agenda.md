@@ -38,3 +38,24 @@
 - **Open Discussion**:
   - Comfort level with analyzing environmental datasets.
   - Does the team feel confident about addressing these questions?
+
+  #### Meeting Summary - Key Discussion Points
+Metadata Selection & Processing:
+
+- Only significant variables should be retained to ensure meaningful analysis.
+- Diversity analysis must use categorical data for effective comparisons.
+- Continuous variables should be converted into categorical, and statistical tests (p-values) should be used to identify significant factors.
+- pH should be categorized into acidic, neutral, and basic to facilitate comparison.
+- Type of land classification should be determined based on metadata content.
+
+#### From the shared meeting notes (image), the following steps are emphasized:
+Choose metadata categories to keep, ensuring that numerical/continuous variables are converted into categorical.
+Develop a diversity analysis model to assess the significance of different variables.
+Identify the most significant category and use it to build a taxonomic model.
+Test the model using machine learning. 
+
+#### Next Steps Before the Next Team Meeting:
+Outline research objectives for the proposal.
+Prepare the outline of the proposal.
+Prepare & finalize the dataset for analysis, ensuring that it is processed correctly.
+Ensure all necessary files are prepared for R processing before proceeding with analysis.
