@@ -34,6 +34,7 @@
   - Can microbial families serve as indicators of environmental conditions?
   - How do latitude, longitude, and elevation affect microbial diversity?
   - Which environmental variables significantly change microbiome composition?
+  - WHat would be the effects of microbial communities on nutrient levels in soil long-term and potential effects on crop diseases.
 - **Open Discussion**:
   - Comfort level with analyzing environmental datasets.
   - Does the team feel confident about addressing these questions?
