@@ -43,10 +43,10 @@
 Metadata Selection & Processing:
 
 - Only significant variables should be retained to ensure meaningful analysis.
-- Diversity analysis must use categorical data for effective comparisons.
-- Continuous variables should be converted into categorical, and statistical tests (p-values) should be used to identify significant factors.
-- pH should be categorized into acidic, neutral, and basic to facilitate comparison.
-- Type of land classification should be determined based on metadata content.
+- Diversity analysis must use categorical data.
+- Continuous variables should be converted into categorical, and p-values should be used to identify significant factors.
+- pH should be categorized into acidic, neutral, and basic.
+- Type of land classification can be determined based on metadata content.
 
 #### From the shared meeting notes (image), the following steps are emphasized:
 - Choose metadata categories to keep, ensuring that numerical/continuous variables are converted into categorical.
