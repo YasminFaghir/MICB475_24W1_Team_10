@@ -3,7 +3,7 @@
 📅 **Date:** Feb 3  
 🕒 **Time:** 12:05 pm  
 📍 **Location:** Zoom  
-👥 **Attendees:** [Yasmin Faghir]
+👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi
 
 ---
 
