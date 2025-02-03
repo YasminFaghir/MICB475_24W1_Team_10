@@ -11,8 +11,6 @@
 
 ### 1️⃣ Welcome and Updates
 - Quick updates from each team member.
-- Review key takeaways from the previous meeting.
-
 ---
 
 ### 2️⃣ Discussion: Paper Options for Project Two
