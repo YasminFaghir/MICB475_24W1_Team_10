@@ -106,8 +106,7 @@ Metadata Selection & Processing:
 ### Filtering & Sample Selection:  
 - Reviewed inclusion/exclusion criteria for sequencing data  
 
-### Denoising & Sequencing Stats:  
-- **Tool used:** [Insert tool]  
+### Denoising & Sequencing Stats:   
 - Pre/Post-denoising sample size comparison  
 - Truncation length determined based on quality plots  
 
