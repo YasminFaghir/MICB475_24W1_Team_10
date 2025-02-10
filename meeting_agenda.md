@@ -62,7 +62,11 @@ Metadata Selection & Processing:
 - Ensure all necessary files are prepared for R processing before proceeding with analysis.
 
 📝 Team Meeting Agenda: Proposal Refinement and Clarifications
+
 📅 Date: Feb 10
+
 🕒 Time: 12:05
+
 📍 Location: Biol 3026
+
 👥 Attendees: Nadia Arjomandi, Yasmin Faghir, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang
