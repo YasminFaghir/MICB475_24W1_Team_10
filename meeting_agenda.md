@@ -60,3 +60,23 @@ Metadata Selection & Processing:
 - Prepare & finalize the dataset for analysis, ensuring that it is processed correctly.
 - Describe and explain the processing of dataset (# of reads, how it was cleaned).
 - Ensure all necessary files are prepared for R processing before proceeding with analysis.
+
+  # 📝 Team Meeting Agenda: Proposal Refinement and Clarifications
+
+📅 **Date:** Feb 10  
+🕒 **Time:** 12:05  
+📍 **Location:** Biol 3026  
+👥 **Attendees:** Nadia Arjomandi, Yasmin Faghir, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang  
+
+---
+
+## **Agenda**  
+
+### **1️⃣ Welcome and Team Updates**  
+- Quick check-in from each team member.  
+- Recap of what has been done so far.  
+- Identify major points of confusion and unresolved questions.  
+
+---
+
+
