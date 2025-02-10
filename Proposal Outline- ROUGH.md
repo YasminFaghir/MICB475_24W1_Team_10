@@ -2,6 +2,23 @@
 ## Research Question: What are the key environmental drivers of microbial composition in wetlands and their impact on microbial diversity?
 
 ## Experimental Aims
+1. Ecosystem Health & Conservation
+
+- Wetlands support diverse microbial communities crucial for nutrient cycling, organic matter decomposition, and water purification.
+- Identifying microbial indicators can help monitor ecosystem stability and degradation.
+2. Agriculture & Soil Health
+
+- Wetland microbes improve soil fertility and structure, reducing reliance on chemical fertilizers.
+- Certain microbes enhance nitrogen fixation, carbon sequestration, and drought resilience, supporting sustainable farming.
+- Understanding microbial shifts helps mitigate agricultural runoff pollution in wetlands.
+3. Climate Regulation & Greenhouse Gas Mitigation
+
+- Wetlands are key regulators of methane (CH₄), carbon dioxide (CO₂), and nitrous oxide (N₂O) emissions.
+- Microbial analysis can guide strategies to reduce emissions from agricultural landscapes.
+4. Environmental Monitoring & Predictive Modeling
+
+- Developing a machine learning model can predict microbial responses to environmental changes.
+- This can support precision agriculture, pollution control, and wetland restoration efforts.
 
 ## Approach
 1. Identify key environmental variables
