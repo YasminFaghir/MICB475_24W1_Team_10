@@ -79,4 +79,35 @@ Metadata Selection & Processing:
 
 ---
 
-
+1. Research Progress & Proposal Development
+Finalized research aims focusing on microbial communities in wetlands and their ecological significance.
+Defined key research questions related to biodiversity, nutrient cycling, and climate impact.
+Established a predictive modeling approach to assess microbial responses to environmental changes.
+2. Methodology & Experimental Design
+Identified key environmental variables:
+pH (acidic, neutral, basic)
+Elevation, total carbon, total nitrogen, and respiration rates (low, mid, high)
+Data Processing Pipeline:
+Applied denoising and clustering techniques for sequence data
+Conducted rarefaction analysis to determine appropriate sampling depth
+3. Diversity & Predictive Analysis
+Alpha & Beta Diversity Analysis:
+Assessed microbial community variation across environmental gradients
+Performed statistical analysis (p-values) to determine significant correlations
+Predictive Taxonomic Modeling:
+Indicator species analysis to link microbial taxa with environmental factors
+Developing machine learning models for predictive environmental monitoring
+4. Dataset Overview & Validation
+Filtering & Sample Selection:
+Reviewed inclusion/exclusion criteria for sequencing data
+Denoising & Sequencing Stats:
+Tool used: [Insert tool]
+Pre/Post-denoising sample size comparison
+Truncation length determined based on quality plots
+Rarefaction Analysis:
+Established rarefaction depth
+Generated rarefaction curve for validation
+5. Next Steps & Feedback Request
+Continue refining machine learning model for microbial predictions.
+Validate taxonomic classifications and confirm significant environmental correlations.
+Request mentor’s feedback on methodology and dataset validation approach.
