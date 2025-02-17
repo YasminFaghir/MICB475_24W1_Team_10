@@ -1,5 +1,5 @@
 # Proposal Outline
-## Research Question: What are the key environmental drivers of microbial composition in wetlands and their impact on microbial diversity?
+## Research Question: How can microbial taxa in wetlands predict specific abiotic variables in the environment?
 
 ## Experimental Aims
 1.Wetlands Are Biodiversity Hotspots
