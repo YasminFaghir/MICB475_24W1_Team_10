@@ -141,3 +141,6 @@ Address any additional concerns:
 - which files should be converted to csv in R
 
 ## Meeting Summary - Key Discussion Points
+- Create metadata: Before phyloseq make sure metadata categories are changed into categorical first
+- ideally want literature for category design, 2 categories best for analysis (high, low)
+- want to know sample sizes for each category (table of how samples are binned) eg. check if there's only one sample with low pH --> will help us decide what our categories will be, whether low+high or high+very high.
