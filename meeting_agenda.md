@@ -137,4 +137,7 @@ Metadata Selection & Processing:
 🔹 Plan for the next phase of the project  
 
 ##  **3. Open Discussion**  
-Address any additional concerns  
+Address any additional concerns:
+- which files should be converted to csv in R
+
+## Meeting Summary - Key Discussion Points
