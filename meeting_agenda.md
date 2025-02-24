@@ -120,26 +120,21 @@ Metadata Selection & Processing:
 - Request mentor’s feedback on methodology and dataset validation approach.
 
 
-
-
-#📅 Meeting Agenda – February 24, 2025
+# 📅 **Meeting Agenda – February 24, 2025**
 
 🕒 **Time:** 12:05  
 📍 **Location:** Biol 3026  
 👥 **Attendees:** Nadia Arjomandi, Yasmin Faghir, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang  
 
-📝 1. Proposal Update
+## 📝 **1. Proposal Update**  
+✅ The proposal has been written  
+❓ Some questions remain unresolved  
+⏳ Waiting for Evelyn’s feedback to confirm if we can proceed  
 
-✅ The proposal has been written
-❓ Some questions remain unresolved
-⏳ Waiting for Evelyn’s feedback to confirm if we can proceed
+##  **2. Next Steps**  
+🔹 Discuss necessary changes  
+🔹 Outline potential refinements  
+🔹 Plan for the next phase of the project  
 
-2. Next Steps
-
-🔹 Discuss necessary changes
-🔹 Outline potential refinements
-🔹 Plan for the next phase of the project
-
-3. Open Discussion
-
-🔍 Address any additional concerns
+##  **3. Open Discussion**  
+Address any additional concerns  
