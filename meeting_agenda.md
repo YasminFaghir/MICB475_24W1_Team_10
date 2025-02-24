@@ -119,7 +119,11 @@ Metadata Selection & Processing:
 - Validate taxonomic classifications and confirm significant environmental correlations.  
 - Request mentor’s feedback on methodology and dataset validation approach.
 
-📅 Meeting Agenda – February 24, 2025
+
+
+
+#📅 Meeting Agenda – February 24, 2025
+
 🕒 **Time:** 12:05  
 📍 **Location:** Biol 3026  
 👥 **Attendees:** Nadia Arjomandi, Yasmin Faghir, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang  
