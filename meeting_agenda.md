@@ -144,3 +144,23 @@ Address any additional concerns:
 - Create metadata: Before phyloseq make sure metadata categories are changed into categorical first
 - ideally want literature for category design, 2 categories best for analysis (high, low)
 - want to know sample sizes for each category (table of how samples are binned) eg. check if there's only one sample with low pH --> will help us decide what our categories will be, whether low+high or high+very high.
+
+
+# 📅 Meeting Agenda – March 3, 2025
+
+🕒 **Time:** 12:05  
+📍 **Location:** Biol 3026  
+👥 **Attendees:** Nadia Arjomandi, Yasmin Faghir, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang  
+
+## 📝 1. Proposal Feedback Discussion  
+
+✅ Review feedback received on the proposal  
+🔹 Identify key points that need revision or clarification  
+🔹 Discuss necessary changes and potential refinements  
+
+## 2. Next Steps  
+
+🔹 Plan for implementing revisions based on feedback  
+🔹 Establish a timeline for completing the next phase  
+
+## 3. Open Discussion  
