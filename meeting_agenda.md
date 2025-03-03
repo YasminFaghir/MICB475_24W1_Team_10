@@ -158,9 +158,20 @@ Address any additional concerns:
 🔹 Identify key points that need revision or clarification  
 🔹 Discuss necessary changes and potential refinements  
 
-## 2. Next Steps  
+## 2. Discuss Metadata Wrangling on R
+🔹 Converted numerical variables into categorical ones for pH, calcium, total nitrogen %, total carbon %, and respiration based on these parameters:
+| Variable                                                           | Categories                                                                                                                                                                                      | Chosen Levels based on Data                                    |   |   |
+|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|---|---|
+| pH                                                                 | Acidic: <6.7 Neutral: 6.7-7.2 Alkaline <7.2 https://pubmed.ncbi.nlm.nih.gov/18706678/ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10805235/ https://pmc.ncbi.nlm.nih.gov/articles/PMC5569653/  | Acidic: <6.7 Neutral: 6.7-7.2 Alkaline <7.2                    |   |   |
+| Calcium                                                            | High: > 50 mg/L Medium: 10-50 Low: <=10  https://doi.org/10.1007/s11273-020-09771-8                                                                                                             | Medium: >10 Low: <=10  Data ranges from: ~0.05-32              |   |   |
+| Total Nitrogen (%)                                                 | High: >1.5 Medium: 0.5-1.5 Low: <0.5 https://www.epa.gov/sites/default/files/2018-10/documents/nutrient-criteria-manual-wetlands.pdf                                                            | High: >0.5% Low: <=0.5  Data ranges from: ~0.05 - 1.6          |   |   |
+| Total Carbon (%)                                                   | High: >40% Medium: 10-40 Low: <10 10.1002/tqem.22283                                                                                                                                            | Medium: >10% Low: <=10% Data ranges from: ~0.3-36              |   |   |
+| Respiration (ug C/g soil/day) 2 mmol L⁻¹ d⁻¹ = 240 µg C/g soil/day | High: >2.5 mmol L⁻¹ d⁻¹  Medium: 1.5-2.5 Low: <1.5 https://acsess.onlinelibrary.wiley.com/doi/10.1002/jeq2.20155                                                                                | High: >240 µg C/g soil/day Low: <=240 Data ranges from: ~3-307 |   |   |
+
+🔹 Created a new metadata file with only those variables selected called wl_data.RData
+
+## 3. Next Steps/Open Discussion  
 
 🔹 Plan for implementing revisions based on feedback  
 🔹 Establish a timeline for completing the next phase  
 
-## 3. Open Discussion  
