@@ -1,0 +1,36 @@
+library(tidyverse)
+library(dplyr)
+
+
+wetlands_data <- read.delim(file = "wetlands_meta.txt", sep = "\t")
+
+
+# Categorizing variables of pH, Ca, total N, total C, respiration
+wl_mutated <- wetlands_data |>
+  mutate(ph = case_when(
+    ph > 7.2 ~ "basic",
+    ph >= 6.7 & ph <= 7.2 ~ "neutral",
+    ph < 6.7 ~ "acidic" 
+  )) |>
+  mutate(calcium = case_when(
+    calcium > 10 ~ "medium",
+    calcium <= 10 ~ "low"
+  )) |>
+  mutate(total_nitrogen_percent = case_when(
+    total_nitrogen_percent > 0.5 ~ "high",
+    total_nitrogen_percent <= 0.5 ~ "low"
+  ))  |>
+  mutate(total_carbon_percent = case_when(
+    total_carbon_percent > 10 ~ "medium",
+    total_carbon_percent <= 10 ~ "low"
+  )) |>
+  mutate(respiration = case_when(
+    respiration > 240 ~ "high",
+    respiration <= 240 ~ "low"
+  ))
+
+# Selecting variables of pH, Ca, total N, total C, respiration
+wl_data <- wl_mutated |>
+  select('ph', 'calcium', 'total_nitrogen_percent', 'total_carbon_percent', 'respiration')
+
+save(wl_data, file="wl_data.RData")
