@@ -1,0 +1,130 @@
+---
+title: "Yasim"
+output: html_document
+date: "2025-03-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+
+# Load the required packages
+library(phyloseq)
+library(data.table)  # Efficiently handles large TSV files
+library(ape)  # For handling phylogenetic trees
+# -- Load packages
+library(phyloseq)
+library(data.table)  # for fread
+library(ape)         # for tree manipulation
+
+# 1. Load & merge metadata
+feature_table_file <- "feature-table.tsv"
+feature_metadata <- fread(feature_table_file, sep = "\t", header = TRUE, data.table = FALSE)
+
+load("wl_data.RData")  # This loads wl_data
+sample_metadata <- wl_data
+
+# Make sure both metadata frames use the same sample ID column
+colnames(feature_metadata)[1] <- "SampleID"
+colnames(sample_metadata)[1] <- "SampleID"
+
+# Merge them by SampleID
+merged_metadata <- merge(feature_metadata, sample_metadata, by = "SampleID", all = TRUE)
+
+# Convert sample IDs to valid rownames & remove that column
+merged_metadata$SampleID <- make.names(merged_metadata$SampleID, unique = TRUE)
+rownames(merged_metadata) <- merged_metadata$SampleID
+merged_metadata <- merged_metadata[, -1]  # drop SampleID col after rownames
+
+# Create sample_data for Phyloseq
+sample_data <- sample_data(merged_metadata)
+
+# 2. Read taxonomy & fix rank consistency
+taxonomy_file <- "taxonomy.tsv"
+taxonomy <- read.csv(taxonomy_file, sep = "\t", header = TRUE, row.names = 1)
+
+# Split taxonomy strings & ensure 7 ranks
+taxonomy_split <- strsplit(as.character(taxonomy$Taxon), "; ")
+taxonomy_split <- lapply(taxonomy_split, function(x) {
+  length_needed <- 7 - length(x)
+  if (length_needed > 0) {
+    x <- c(x, rep("Unclassified", length_needed))
+  }
+  return(x)
+})
+taxonomy_matrix <- do.call(rbind, taxonomy_split)
+colnames(taxonomy_matrix) <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
+
+# Create a phyloseq tax_table
+tax_table <- tax_table(as.matrix(taxonomy_matrix))
+
+# 3. Subset to avoid memory issues & build a dummy OTU table
+#    (assuming you have sp1..spXXXXX as rownames in 'taxonomy')
+taxa_ids <- rownames(tax_table)  # 'sp1', 'sp2', 'sp3', ...
+sample_ids <- rownames(sample_data)
+
+max_taxa <- min(5000, length(taxa_ids))
+max_samples <- min(500, length(sample_ids))
+taxa_ids <- taxa_ids[1:max_taxa]
+sample_ids <- sample_ids[1:max_samples]
+
+dummy_otu_table <- matrix(0, nrow = length(taxa_ids), ncol = length(sample_ids))
+rownames(dummy_otu_table) <- taxa_ids
+colnames(dummy_otu_table) <- sample_ids
+otu_table <- otu_table(dummy_otu_table, taxa_are_rows = TRUE)
+
+# Prune taxonomy to shared IDs
+common_taxa <- intersect(rownames(otu_table), rownames(tax_table))
+otu_table <- otu_table[common_taxa, ]
+tax_table <- tax_table[common_taxa, ]
+
+# 4. Fix the tree tips to match OTU IDs
+tree_file <- "tree.nwk"
+phy_tree <- read_tree(tree_file)
+
+# We assume 'phy_tree$tip.label' are hashed IDs or something else,
+# and we want them to be sp1, sp2, etc. We do a direct rename to 'spXXX'.
+# For example, if your tree has 5000 tips and they exactly match length(common_taxa),
+# we can rename them in numeric order. If the number of tips differs, you may want
+# a more robust map approach. For a quick fix:
+original_tips <- phy_tree$tip.label
+if (length(original_tips) >= length(common_taxa)) {
+  # rename just the first 'length(common_taxa))' tips to sp1..spXXXX
+  # caution: this assumes the tree order matches the order in 'common_taxa'
+  phy_tree$tip.label[1:length(common_taxa)] <- common_taxa
+  
+  # If you need a more robust approach, map hashed IDs to sp## IDs using a lookup:
+  # tip_map <- data.frame(orig=original_tips, new=NA_character_, stringsAsFactors=FALSE)
+  # tip_map$new[match(common_taxa, tip_map$orig)] <- common_taxa
+  # Then reorder or prune etc. But let's keep it simple for now.
+} else {
+  # If the tree has fewer tips than the OTUs, you'd do the opposite: subset your OTU table
+  # to only those tips in the tree or rename the existing tips. Possibly prune your data.
+  
+  # Example pruning of OTU table/tax table to match existing tips:
+  # keep_these <- intersect(rownames(otu_table), original_tips)
+  # otu_table <- otu_table[keep_these, ]
+  # tax_table <- tax_table[keep_these, ]
+  # Then your sp## labels won't be used if the tree doesn't have them in the first place.
+}
+
+# 5. Build Phyloseq object
+physeq <- phyloseq(
+  otu_table,
+  tax_table,
+  sample_data,
+  phy_tree
+)
+
+physeq
+
+```
+
+
+
+
+
