@@ -1,0 +1,121 @@
+# seqs file (“/mnt/datasets/project_2/wetlands/seqs”) has already been demultiplexed to manifest.txt
+location of files:
+/data/wetlands_proj/wetlands_manif.txt 
+/data/wetlands_proj/wetlands_meta.txt 
+
+cd /data/wetlands_proj
+
+qiime tools import \
+  --type "SampleData[SequencesWithQuality]" \
+  --input-format SingleEndFastqManifestPhred33V2 \
+  --input-path /data/wetlands_proj/wetlands_manif.txt \
+  --output-path demux_seqs.qza
+
+
+# Create visualization of demultiplexed samples
+qiime demux summarize \
+  --i-data demux_seqs.qza \
+  --o-visualization demux_seqs.qzv
+
+# Make directory in home directory on local machine
+cd Desktop
+mkdir wetlands_proj
+cd wetlands_proj
+
+# Copy file 
+scp root@10.19.139.170:/data/wetlands_proj/demux_seqs.qzv .
+
+# Create detached screen for denoising (takes a long time)
+screen -S wetlands_denoise
+
+qiime dada2 denoise-single \
+  --i-demultiplexed-seqs demux_seqs.qza \
+  --p-trim-left 5 \
+  --p-trunc-len 125 \
+  --o-representative-sequences dada2_rep_set.qza \
+  --o-table dada2_table.qza \
+  --o-denoising-stats dada2_stats.qza
+
+screen -r wetlands_denoise
+‘exit’ → terminates the screen
+
+qiime feature-table summarize \
+  --i-table dada2_table.qza \
+  --o-visualization dada2_table.qzv \
+  --m-sample-metadata-file /data/wetlands_proj/wetlands_meta.txt 
+
+qiime feature-table tabulate-seqs \
+  --i-data dada2_rep_set.qza \
+  --o-visualization dada2_rep_set.qzv
+
+cd Desktop/wetlands_proj
+scp root@10.19.139.170:/data/wetlands_proj/dada2_rep_set.qzv .
+scp root@10.19.139.170:/data/wetlands_proj/dada2_table.qzv .
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier /mnt/datasets/classifiers/silva-138-99-nb-classifier.qza \
+  --i-reads dada2_rep_set.qza \
+  --o-classification taxonomy.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
+
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences dada2_rep_set.qza \
+  --o-alignment aligned-dada2_rep_set.qza \
+  --o-masked-alignment masked-aligned-dada2_rep_set.qza \
+  --o-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+
+# Create detached screen for phylogenetic tree (takes a long time)
+screen -S wetlands_phylo
+
+# Using maximum sequencing depth to resolve the saturation point
+qiime diversity alpha-rarefaction \
+  --i-table dada2_table.qza \
+  --i-phylogeny rooted-tree.qza \
+  --p-max-depth 436000 \
+  --m-metadata-file /data/wetlands_proj/wetlands_meta.txt \
+  --o-visualization alpha-rarefaction-m.qzv
+
+# Create detached screen for alpha rarefaction (takes a long time)
+screen -S wetlands_alphat
+
+# Chosen sequencing depth for rarefaction
+qiime diversity alpha-rarefaction \
+  --i-table dada2_table.qza \
+  --i-phylogeny rooted-tree.qza \
+  --p-max-depth 95000 \
+  --m-metadata-file /data/wetlands_proj/wetlands_meta.txt \
+  --o-visualization alpha-rarefac.qzv
+
+cd Desktop/wetlands_proj
+scp root@10.19.139.170:/data/wetlands_proj/alpha-rarefaction-m.qzv .
+scp root@10.19.139.170:/data/wetlands_proj/alpha-rarefac.qzv .
+
+# Create folder for export of feature-table (otu), taxonomy & phylo tree
+mkdir /data/wetlands_export
+cd /data/wetlands_export
+
+qiime tools export \
+  --input-path /data/wetlands_proj/dada2_table.qza \
+  --output-path table_export
+
+# Convert feature-table to tsv file
+biom convert \
+-i feature-table.biom \
+--to-tsv \
+-o feature-table.tsv
+
+qiime tools export \
+  --input-path /data/wetlands_proj/taxonomy.qza \
+  --output-path taxonomy_export
+
+qiime tools export \
+  --input-path /data/wetlands_proj/rooted-tree.qza \
+  --output-path rooted_tree_export
+
+cd Desktop/wetlands_proj
+scp -r root@10.19.139.170:~/data/wetlands_export .
+scp root@10.19.139.170:/data/wetlands_proj/wetlands_meta.txt .
