@@ -29,8 +29,4 @@ wl_mutated <- wetlands_data |>
     respiration <= 240 ~ "low"
   ))
 
-# Selecting variables of pH, Ca, total N, total C, respiration
-wl_data <- wl_mutated |>
-  select('ph', 'calcium', 'total_nitrogen_percent', 'total_carbon_percent', 'respiration')
-
 save(wl_data, file="wl_data.RData")
