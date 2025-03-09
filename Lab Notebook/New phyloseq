@@ -1,0 +1,53 @@
+# Creating phyloseq 
+# Load the required packages
+library(phyloseq)
+library(data.table)  # Efficiently handles large TSV files
+library(ape)  # For handling phylogenetic trees
+
+# 1. Load sample metadata and fix sample IDs
+load("wl_data.RData")  # Loads sample_metadata (among other objects, if any)
+class(wl_data)
+# Ensure sample_metadata has sample IDs as row names
+# (If there's no explicit SampleID column, we use feature_table to get sample names)
+feature_table <- read.table("wetlands_export/table_export/feature-table.tsv", header = TRUE, sep = "\t")
+sample_ids <- colnames(feature_table)[-1]    # exclude the first column name which is likely "OTU" or similar
+# If sample_metadata has the same number of rows as samples, assign row names
+if (nrow(wl_data) == length(sample_ids)) {
+  rownames(wl_data) <- sample_ids
+} else {
+  stop("Number of samples in metadata does not match number of sample columns in feature table.")
+}
+# (Optional) If needed, add SampleID column in metadata for clarity
+# sample_metadata$SampleID <- rownames(sample_metadata)
+
+# 2. Format feature table as OTU table
+# If the first column is OTU IDs, set them as row names and remove that column
+rownames(feature_table) <- feature_table[[1]]
+feature_table <- feature_table[ , -1]
+# Convert to matrix and create otu_table
+otu_mat <- as.matrix(feature_table)
+otu_table_obj <- otu_table(otu_mat, taxa_are_rows = TRUE)
+
+# 3. Read and format taxonomy table (keeping Taxon string intact)
+taxonomy_df <- read.table("wetlands_export/taxonomy_export/taxonomy.tsv", header = TRUE, sep = "\t", row.names = 1)
+# At this point, taxonomy_df has row names as feature IDs and a column (or columns) for taxonomy
+# Convert taxonomy dataframe to matrix for phyloseq
+tax_mat <- as.matrix(taxonomy_df)
+tax_table_obj <- tax_table(tax_mat)
+
+# 4. Create sample_data object and merge everything into phyloseq
+sample_data_obj <- sample_data(wl_data)
+physeq <- phyloseq(otu_table_obj, tax_table_obj, sample_data_obj)
+
+class(physeq)
+# The phyloseq object 'physeq' now contains the OTU table, taxonomy, and sample metadata.
+# You can save or use 'physeq' for further analysis (e.g., phyloseq::merge_phyloseq, alpha/beta diversity, etc.).
+
+
+# Lets Print the sample_data(physeq):
+sample_data(physeq)
+
+# Check the sample variables and names:
+sample_variables(physeq)
+
+save(physeq, file="physeq_wl.RData")
