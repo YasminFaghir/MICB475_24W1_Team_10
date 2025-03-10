@@ -1,3 +1,40 @@
+# 📝 Team Meeting Agenda
+📅 **Date:**  March 9 
+🕒 **Time:** 12:05 pm  
+👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang 
+
+## Agenda Items
+
+### 1. Proposal Revisions  
+- The proposal revision has been completed, and all comments were applied.  
+- **Discussion:** Clarification regarding ASM referencing — is it acceptable to mention a source in the middle of the proposal but place the reference number at the end?  
+
+### 2. Phyloseq Object and Metadata Review  
+- The phyloseq object has been created.  
+- **Note:** Metadata issue has been corrected — initially, only selected columns were kept, but now all necessary columns are included.  
+- **Discussion:** Review the phyloseq object one more time to ensure it is correct before moving on.  
+
+### 3. Next Steps: Alpha Diversity Metrics  
+- Plan to compare alpha diversity metrics.  
+- **Goal:** Identify which factors are significant.  
+- **Discussion:** Approach and methods for this analysis.  
+
+### 4. Questions and Final Clarifications  
+- Open for any additional questions or concerns. 
+
+## Action Items Recap & Next Meeting Planning
+
+
+
+
+
+
+
+
+
+
+
+
 # 📝 Team Meeting Agenda: Paper Selection for Project Two
 
 📅 **Date:** Feb 3  
