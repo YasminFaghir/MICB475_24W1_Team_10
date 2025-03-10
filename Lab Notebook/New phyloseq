@@ -1,3 +1,36 @@
+library(tidyverse)
+library(dplyr)
+
+
+wetlands_data <- read.delim(file = "wetlands_meta.txt", sep = "\t")
+
+
+# Categorizing variables of pH, Ca, total N, total C, respiration
+wl_mutated <- wetlands_data |>
+  mutate(ph = case_when(
+    ph > 7.2 ~ "basic",
+    ph >= 6.7 & ph <= 7.2 ~ "neutral",
+    ph < 6.7 ~ "acidic" 
+  )) |>
+  mutate(calcium = case_when(
+    calcium > 10 ~ "medium",
+    calcium <= 10 ~ "low"
+  )) |>
+  mutate(total_nitrogen_percent = case_when(
+    total_nitrogen_percent > 0.5 ~ "high",
+    total_nitrogen_percent <= 0.5 ~ "low"
+  ))  |>
+  mutate(total_carbon_percent = case_when(
+    total_carbon_percent > 10 ~ "medium",
+    total_carbon_percent <= 10 ~ "low"
+  )) |>
+  mutate(respiration = case_when(
+    respiration > 240 ~ "high",
+    respiration <= 240 ~ "low"
+  ))
+
+save(wl_mutated, file="wl_data.RData")
+
 # Creating phyloseq 
 # Load the required packages
 library(phyloseq)
@@ -6,14 +39,14 @@ library(ape)  # For handling phylogenetic trees
 
 # 1. Load sample metadata and fix sample IDs
 load("wl_data.RData")  # Loads sample_metadata (among other objects, if any)
-class(wl_data)
+class(wl_mutated)
 # Ensure sample_metadata has sample IDs as row names
 # (If there's no explicit SampleID column, we use feature_table to get sample names)
 feature_table <- read.table("wetlands_export/table_export/feature-table.tsv", header = TRUE, sep = "\t")
 sample_ids <- colnames(feature_table)[-1]    # exclude the first column name which is likely "OTU" or similar
 # If sample_metadata has the same number of rows as samples, assign row names
-if (nrow(wl_data) == length(sample_ids)) {
-  rownames(wl_data) <- sample_ids
+if (nrow(wl_mutated) == length(sample_ids)) {
+  rownames(wl_mutated) <- sample_ids
 } else {
   stop("Number of samples in metadata does not match number of sample columns in feature table.")
 }
@@ -36,7 +69,7 @@ tax_mat <- as.matrix(taxonomy_df)
 tax_table_obj <- tax_table(tax_mat)
 
 # 4. Create sample_data object and merge everything into phyloseq
-sample_data_obj <- sample_data(wl_data)
+sample_data_obj <- sample_data(wl_mutated)
 physeq <- phyloseq(otu_table_obj, tax_table_obj, sample_data_obj)
 
 class(physeq)
