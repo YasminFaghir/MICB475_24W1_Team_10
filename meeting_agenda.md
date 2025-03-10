@@ -1,5 +1,6 @@
 # 📝 Team Meeting Agenda
 📅 **Date:**  March 9 
+
 🕒 **Time:** 12:05 pm  
 👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi, Michelle Benitez-Muller, Ava Tiefenbach, Ingrid Wang 
 
@@ -23,6 +24,12 @@
 - Open for any additional questions or concerns. 
 
 ## Action Items Recap & Next Meeting Planning
+
+
+
+
+
+
 
 
 
