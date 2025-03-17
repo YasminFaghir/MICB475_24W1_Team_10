@@ -201,27 +201,31 @@ Address any additional concerns:
 ### 4. Questions and Final Clarifications  
 - Open for any additional questions or concerns. 
 
-## Action Items Recap & Next Meeting Planning
+## Next Meeting Planning
 
 
 
 
 # 📝 Team Meeting Agenda
 📅 **Date:** March 17
-
 🕒 **Time:** 12:05 pm  
 👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi, Ava Tiefenbach, Ingrid Wang, Michelle Benitez-Muller
 
 ## Agenda Items
 
 - Alpha and beta diversity analyses performed on different abiotic factors  
-  - For nitrogen levels, there appears to be a **significant difference between low and high nitrogen** conditions  
-- Presentation of figures for different abiotic factors (Ph, Nirogen Level, Carbon Content, Respiration, and Calcium level)
+  - For nitrogen levels, there appears to be a **significant difference between low and high nitrogen** conditions
+  -  While alpha diversity shows no significant differences in species richness across pH levels, beta diversity (PERMANOVA p = 0.001) reveals that pH strongly shapes microbial community composition.
+  -  Carbon:
+  -  Calcium:
+  -  Respiration:
+- Presentation of figures for different abiotic factors (Ph, Nitrogen Level, Carbon Content, Respiration, and Calcium level)
 -  Next steps are:Identify indicator taxa and perform core microbiome analysis
 
 
-### Questions and Final Clarifications  
+### 3. Open Discussion and next meeting planning   
+Address any additional concern 
 
-## Action Items Recap & Next Meeting Planning
+
 
 
