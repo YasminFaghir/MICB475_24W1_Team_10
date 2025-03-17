@@ -204,3 +204,22 @@ Address any additional concerns:
 ## Action Items Recap & Next Meeting Planning
 
 
+
+
+# 📝 Team Meeting Agenda
+📅 **Date:** March 17
+
+🕒 **Time:** 12:05 pm  
+👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi, Ava Tiefenbach, Ingrid Wang, Michelle Benitez-Muller
+
+## Agenda Items
+
+- Alpha and beta diversity analyses performed on different abiotic factors  
+  - For nitrogen levels, there appears to be a **significant difference between low and high nitrogen** conditions  
+- Next steps are:Identify indicator taxa and perform core microbiome analysis  
+
+### Questions and Final Clarifications  
+
+## Action Items Recap & Next Meeting Planning
+
+
