@@ -216,8 +216,8 @@ Address any additional concerns:
 
 - Alpha and beta diversity analyses performed on different abiotic factors  
   - For nitrogen levels, there appears to be a **significant difference between low and high nitrogen** conditions  
-- Next steps are:Identify indicator taxa and perform core microbiome analysis
 - Presentation of figures for different abiotic factors (Ph, Nirogen Level, Carbon Content, Respiration, and Calcium level)
+-  Next steps are:Identify indicator taxa and perform core microbiome analysis
 
 
 ### Questions and Final Clarifications  
