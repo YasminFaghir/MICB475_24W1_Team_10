@@ -208,7 +208,9 @@ Address any additional concerns:
 
 # 📝 Team Meeting Agenda
 📅 **Date:** March 17
-🕒 **Time:** 12:05 pm  
+
+🕒 **Time:** 12:05 pm 
+
 👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi, Ava Tiefenbach, Ingrid Wang, Michelle Benitez-Muller
 
 ## Agenda Items
