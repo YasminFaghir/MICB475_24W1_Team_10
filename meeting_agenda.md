@@ -218,9 +218,9 @@ Address any additional concerns:
 - Alpha and beta diversity analyses performed on different abiotic factors  
   - For nitrogen levels, there appears to be a **significant difference between low and high nitrogen** conditions
   -  While alpha diversity shows no significant differences in species richness across pH levels, beta diversity (PERMANOVA p = 0.001) reveals that pH strongly shapes microbial community composition.
-  -  Carbon:
-  -  Calcium:
-  -  Respiration:
+  -  Carbon: While alpha diversity shows no significant differences in species richness across carbon levels, beta diversity (PERMANOVA p = 0.001) reveals that carbon strongly shapes microbial community composition.
+  -  Calcium: Imbalanced Distribution of Calcium Categories, Dominated by Medium-Level Samples
+  -  Respiration: While alpha diversity shows no significant differences in species richness across respiration levels, beta diversity (PERMANOVA p = 0.001) reveals that respiration strongly shapes microbial community composition.
 - Presentation of figures for different abiotic factors (Ph, Nitrogen Level, Carbon Content, Respiration, and Calcium level)
 -  Next steps are:Identify indicator taxa and perform core microbiome analysis
 
