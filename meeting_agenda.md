@@ -242,6 +242,7 @@ Address any additional concern
 - Reviewed core microbiome and indicator taxa analyses.
 
 - Identified overlapping ASVs between core microbiome and ISA results.
+  - All group members got different results for core microbiome and ISA results --> review code together and identify differences
 
 - Discussed and compared current analyses to determine the best feature set for machine learning.
 
