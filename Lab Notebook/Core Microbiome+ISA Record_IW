@@ -32,6 +32,10 @@ CoreVD_nitrogen <- ggVennDiagram(x = core_list) +
 
 ggsave(CoreVD_nitrogen, file="CoreVD_nitrogen.png", height=7, width=12) 
 
+
+
+
+
 # glom to Genus
 wetlands_genus <- tax_glom(wetlands_filt, "Genus", NArm = FALSE)
 wetlands_genus_RA <- transform_sample_counts(wetlands_genus, fun=function(x) x/sum(x))
@@ -50,3 +54,36 @@ isa_nitrogen <- isa_wetlands$sign |>
   filter(p.value<0.05) 
 
 write.csv(isa_nitrogen, "isa_nitrogen.csv", row.names = FALSE)
+
+
+
+
+
+## Comparing Core microbiome and ISA
+core_asvs_low <- unique(low_n_core)
+core_asvs_high <- unique(high_n_core)
+
+# Extract indicator ASVs for each nitrogen level
+indicator_asvs_low <- isa_nitrogen$ASV[isa_nitrogen$p.value < 0.05 & isa_nitrogen$s.low > 0]
+indicator_asvs_high <- isa_nitrogen$ASV[isa_nitrogen$p.value < 0.05 & isa_nitrogen$s.high > 0]
+
+# Find overlapping ASVs between indicator taxa and core microbiome for each nitrogen level
+overlap_low <- intersect(low_n_core, indicator_asvs_low)
+overlap_high <- intersect(high_n_core, indicator_asvs_high)
+print(overlap_low)
+print(overlap_high)
+
+# Extract taxa info for overlapping ASVs
+tax_asvs <- as.data.frame(tax_table(wetlands_filt))
+tax_asvs$ASV <- rownames(tax_asvs)
+overlap_tax_low <- tax_asvs |>
+  filter(ASV %in% overlap_low)
+overlap_tax_high <- tax_asvs |>
+  filter(ASV %in% overlap_high)
+
+print(overlap_tax_low)
+print(overlap_tax_high)
+
+write.csv(overlap_tax_low, "overlap_tax_low.csv", row.names = FALSE)
+write.csv(overlap_tax_high, "overlap_tax_high.csv", row.names = FALSE)
+
