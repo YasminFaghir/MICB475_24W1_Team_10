@@ -1,0 +1,4 @@
+"Domain","Phylum","Class","Order","Family","Genus","Species","Confidence","ASV"
+"d__Bacteria"," p__Acidobacteriota"," c__Blastocatellia"," o__Pyrinomonadales"," f__Pyrinomonadaceae"," g__RB41",NA,"0.9873667","c59768a0cba53f0e1141c9ba541b6cbc"
+"d__Bacteria"," p__Myxococcota"," c__bacteriap25"," o__bacteriap25"," f__bacteriap25"," g__bacteriap25",NA,"0.9032101","8d20b5539f7ea093b96ad0bf482a2d34"
+"d__Bacteria"," p__Actinobacteriota"," c__Actinobacteria"," o__Micrococcales"," f__Micrococcaceae",NA,NA,"0.9996778","11334291947eca314219c89eb5ab301c"
