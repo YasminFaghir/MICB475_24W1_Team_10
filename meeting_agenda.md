@@ -230,4 +230,23 @@ Address any additional concern
 
 
 
+# 📝 Team Meeting Agenda
+📅 **Date:** March 24th
+
+🕒 **Time:** 12:05 pm 
+
+👥 **Attendees:** Yasmin Faghir, Nadia Arjomandi, Ava Tiefenbach, Ingrid Wang, Michelle Benitez-Muller
+
+## Agenda Items
+
+- Reviewed core microbiome and indicator taxa analyses.
+
+- Identified overlapping ASVs between core microbiome and ISA results.
+
+- Discussed and compared current analyses to determine the best feature set for machine learning.
+
+Next step: finalize feature selection and begin working on the machine learning script.
+
+### . Next Steps (Goal for the upcoming week): focus on running and refining the ML model using the selected features.
+
 
