@@ -1,0 +1,181 @@
+library(tidyverse)
+library(dplyr)
+
+# Load necessary libraries
+library(phyloseq)
+
+#Install ggpubr 
+install.packages("ggpubr") 
+
+# Load required packages
+library(phyloseq)
+library(vegan)
+library(ggplot2)
+library(ggpubr)
+library(dplyr)
+library(tidyr)
+library(gridExtra)
+
+
+# Load phyloseq object
+load("physeq_wl.RData")
+
+#Troubleshooting file path and working directory 
+
+file.exists("tree.nwk")
+
+getwd()
+
+# Load tree file (Newick format)
+tree <- read_tree("/Users/michellebenitezmuller/Desktop/wetlands_proj/wetlands_export/tree.nwk")
+
+# Add to phyloseq object
+physeq <- merge_phyloseq(physeq, tree)
+
+#Check distribution of categories across Calcium variable
+table(wl_mutated$calcium)
+
+#we have 6 samples that fall into "low" and 186 samples that fall into "medium"
+#that disparity is too large
+#let's plot the distribution
+
+library(ggplot2)
+
+calcium_cat_distribution_bar <- ggplot(wl_mutated, aes(x = calcium, fill = calcium)) +
+  geom_bar() +
+  labs(title = "Distribution of Calcium Categories", x = "Calcium Category", y = "Number of Samples") +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 16),
+    axis.title = element_text(size = 18),
+    axis.text = element_text(size = 16), 
+    legend.text = element_text(size = 14), 
+    legend.title = element_text(size = 16),
+    plot.title = element_text(size = 20, face = "bold")
+  )
+
+
+#Save as a png
+ggsave(filename = "calcium_category_distribution_barplot.png", plot = calcium_cat_distribution_bar, height = 8, width = 16) 
+
+library(tidyr)
+
+phyloseq_validate(phyloseq)
+
+# Separate the 'Taxon' column into the different taxonomic ranks
+tax_table_df <- as.data.frame(tax_table(physeq))
+
+tax_table_separated <- separate(tax_table_df, col = Taxon, sep = "; ", 
+                              into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"))
+
+# Convert the separated dataframe back to a tax_table object
+tax_table_separated_matrix <- as.matrix(tax_table_separated[, -1])  # Remove first column (ID or sample ID)
+rownames(tax_table_separated_matrix) <- tax_table_separated$SampleID  # Assuming your sample IDs are in this column
+
+# Re-create a tax_table object and update phyloseq object with new tax_table
+tax_table_physeq <- tax_table(tax_table_separated_matrix)
+rownames(tax_table_separated_matrix) <- taxa_names(physeq)
+tax_table_physeq <- tax_table(tax_table_separated_matrix)
+
+physeq_filt <- physeq
+tax_table(physeq_filt) <- tax_table_physeq
+
+#Now can use subset_taxa
+
+physeq_filt <- subset_taxa(physeq_filt, Domain == "d__Bacteria" &  Class!="c__Chloroplast" & Family !="f__Mitochondria")
+
+
+tax_table(physeq_filt)
+head(tax_table(physeq_filt))
+
+#Looks like the "Domain" column got dropped so we gotta go back a few steps and fix this 
+
+tax_table_df <- as.data.frame(tax_table(physeq))  # Convert phyloseq tax_table to data frame
+
+library(tidyr)
+tax_table_separated <- separate(tax_table_df, col = Taxon, sep = "; ", 
+                                into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
+                                fill = "right")  # Ensures missing values get NA instead of dropping columns
+
+tax_table_separated_matrix <- as.matrix(tax_table_separated)  # Convert back to matrix
+rownames(tax_table_separated_matrix) <- rownames(tax_table(physeq))  # Ensure row names match original
+tax_table(physeq) <- tax_table(tax_table_separated_matrix)  # Assign to physeq object
+
+colnames(tax_table(physeq))
+
+physeq_filt <- subset_taxa(physeq, Domain == "d__Bacteria" &  
+                             Class != "c__Chloroplast" &  
+                             Family != "f__Mitochondria")
+
+library(phyloseq)
+library(ape)
+library(tidyverse)
+library(picante)
+
+#Calculate alpha diversity metrics
+alpha_metrics <- estimate_richness(physeq_filt, measures = c("Observed", "Shannon", "Chao1"))
+
+#Merge with sample metadata
+meta <- data.frame(sample_data(physeq))
+alpha_merged <- cbind(alpha_metrics, meta)
+
+# Wilcoxon rank-sum test for Calcium variable with 2 categories (medium & low)
+
+obv_wilcox <- wilcox.test(Observed ~ calcium, data=alpha_merged)
+shan_wilcox <- wilcox.test(Shannon ~ calcium, data=alpha_merged)
+chao1_wilcox <- wilcox.test(Chao1 ~ calcium, data=alpha_merged)
+
+#Check if difference between medium and low calcium groups are significant
+
+print(obv_wilcox)
+print(shan_wilcox)
+print(chao1_wilcox)
+
+#Not significant...
+
+#Extract the p-values so I can place them on the plots (round to 2 decimal points)
+p_obv <- round(obv_wilcox$p.value, 2)
+p_shan <- round(shan_wilcox$p.value, 2)
+p_chao1 <- round(chao1_wilcox$p.value, 2)
+
+library(ggplot2)
+
+# Convert calcium to a factor if it isn't already
+alpha_merged$calcium <- as.factor(alpha_merged$calcium)
+
+#Boxplots for each alpha diversity measure
+observed_plot <- ggplot(alpha_merged, aes(x = calcium, y = Observed, fill = calcium)) +
+  geom_boxplot() +
+  labs(title = "Observed Species by Calcium Level",
+       x = "Calcium",
+       y = "Observed Species") +
+  theme(legend.position = "none") + 
+  annotate("text", x = 1.5, y = max(alpha_merged$Observed) * 1.5,
+           label = paste("p =", p_obv), size = 6)
+
+shannon_plot <- ggplot(alpha_merged, aes(x = calcium, y = Shannon, fill = calcium)) +
+  geom_boxplot() +
+  labs(title = "Shannon Diversity Index by Calcium Level",
+       x = "Calcium",
+       y = "Shannon Diversity Index") +
+  theme(legend.position = "none") + 
+  annotate("text", x = 1.5, y = max(alpha_merged$Shannon) * 1.5,
+           label = paste("p =", p_shan), size = 6)
+
+chao1_plot <- ggplot(alpha_merged, aes(x = calcium, y = Chao1, fill = calcium)) +
+  geom_boxplot() +
+  labs(title = "Chao1 Diversity Index by Calcium Level",
+       x = "Calcium",
+       y = "Chao1 Diversity Index") +
+  theme(legend.position = "none") + 
+  annotate("text", x = 1.5, y = max(alpha_merged$Chao1) * 1.5,
+           label = paste("p =", p_chao1), size = 6)
+  
+
+#Put observed, shannon, and chao1 plots side by side to compare 
+install.packages("gridExtra") 
+library(gridExtra) 
+alpha_diversity_boxplots <- grid.arrange(observed_plot, shannon_plot, chao1_plot, ncol = 3)
+
+#Save as a png
+ggsave(filename = "alpha_diversity_boxplots.png", plot = alpha_diversity_boxplots, height = 8, width = 16) 
