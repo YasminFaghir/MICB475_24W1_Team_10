@@ -263,11 +263,12 @@ Next step: finalize feature selection and begin working on the machine learning 
 ---
 
 ## Agenda Items
-- Reviewed machine learning results.
-- Discussed confirmation with Dr. Evelyn regarding ML output.
-- Addressed questions or concerns related to final presentation.
-- Began outlining plan to start manuscript writing.
-- Discussed which figures to include in the main paper vs. supplementary materials.
+- Review machine learning results and outputs.
+- Review ML codes. 
+- Address questions or concerns related to final presentation.
+- Begin outlining plan to start manuscript writing.
+- Discuss which figures to include in the main paper vs. supplementary materials.
+
 ---
 ## Next Steps (Goal for the Upcoming Week)
 - Start writing the manuscript
