@@ -265,7 +265,7 @@ Next step: finalize feature selection and begin working on the machine learning 
 ###  Work Completed
 
 - Presentation submitted by March 30th with all applied feedback.
-- Machine learning model successfully ran — achieved high accuracy!
+- Machine learning model successfully ran - achieved high accuracy!
 
 ## Agenda Items
 - Review machine learning results and outputs.
