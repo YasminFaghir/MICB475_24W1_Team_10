@@ -254,3 +254,21 @@ Next step: finalize feature selection and begin working on the machine learning 
 ### . Next Steps (Goal for the upcoming week): focus on running and refining the ML model using the selected features.
 
 
+# 📝 Team Meeting Agenda
+
+**📅 Date:** March 31st  
+**🕒 Time:** 12:05 PM  
+**👥 Attendees:** Nadia Arjomandi,Yasmin Faghir, Ava Tiefenbach, Ingrid Wang, Michelle Benitez-Muller
+
+---
+
+## Agenda Items
+- Reviewed machine learning results.
+- Discussed confirmation with Dr. Evelyn regarding ML output.
+- Addressed questions or concerns related to final presentation.
+- Began outlining plan to start manuscript writing.
+- Discussed which figures to include in the main paper vs. supplementary materials.
+---
+## Next Steps (Goal for the Upcoming Week)
+- Start writing the manuscript
+- Hold open discussion for remaining questions, concerns.
