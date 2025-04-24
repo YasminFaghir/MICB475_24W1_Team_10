@@ -1,9 +1,3 @@
----
-title: "YNMachineLearning"
-author: "Yasmiiin"
-date: "2025-03-25"
-output: html_document
----
 
 ```{r}
 # Load required packages
